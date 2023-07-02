@@ -17,3 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::group(['namespace' => 'User', 'prefix' => 'user', 'middleware' => 'auth:sanctum'], function () {
+    Route::get('/', 'ShowController');
+});
