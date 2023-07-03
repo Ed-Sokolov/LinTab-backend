@@ -18,6 +18,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::group(['namespace' => 'User', 'prefix' => 'users', 'middleware' => 'auth:sanctum'], function () {
-    Route::get('/{user}', 'ShowController');
+Route::group(['middleware' => 'auth:sanctum'], function () {
+    Route::group(['namespace' => 'Auth'], function () {
+        Route::get('/auth/check', 'CheckAuth');
+    });
+
+    Route::group(['namespace' => 'User', 'prefix' => 'users'], function () {
+        Route::get('/{user}', 'ShowController');
+    });
 });
