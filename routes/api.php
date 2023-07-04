@@ -22,4 +22,10 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::group(['namespace' => 'User', 'prefix' => 'users'], function () {
         Route::get('/{user}', 'ShowController');
     });
+
+    Route::group(['namespace' => 'User', 'prefix' => 'settings'], function () {
+        Route::group(['namespace' => 'About', 'prefix' => 'about'], function () {
+            Route::patch('/', 'UpdateController');
+        });
+    });
 });
