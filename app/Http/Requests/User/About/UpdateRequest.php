@@ -24,8 +24,8 @@ class UpdateRequest extends FormRequest
     {
         return [
             'nickname' => 'required|string|unique:users,nickname,' . Auth::id() . '|max:50|min:4',
-            'name' => 'string|max:100',
-            'about' => 'string|max:255'
+            'name' => 'nullable|string|max:100',
+            'about' => 'nullable|string|max:255'
         ];
     }
 }
