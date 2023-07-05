@@ -23,8 +23,8 @@ class UpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nickname' => 'required|string|unique:users,nickname,' . Auth::id() . '|max:255',
-            'name' => 'string|max:255',
+            'nickname' => 'required|string|unique:users,nickname,' . Auth::id() . '|max:50|min:4',
+            'name' => 'string|max:100',
             'about' => 'string|max:255'
         ];
     }

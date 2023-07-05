@@ -12,11 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('nickname')->unique();
+            $table->string('nickname', 50)->unique();
             $table->string('avatar')->nullable();
             $table->string('about')->nullable();
 
-            $table->string('name')->nullable()->change();
+            $table->string('name', 100)->nullable()->change();
 
             $table->softDeletes();
         });
