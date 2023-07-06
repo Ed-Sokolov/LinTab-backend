@@ -28,4 +28,19 @@ class UpdateRequest extends FormRequest
             'about' => 'nullable|string|max:255'
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'nickname.required' => 'The nickname is required',
+            'nickname.string' => 'The nickname must be string',
+            'nickname.unique' => 'The nickname already exists',
+            'nickname.max' => 'The nickname must be less than 50 characters',
+            'nickname.min' => 'The nickname must be more than 4 characters',
+            'name.string' => 'The name must be string',
+            'name.max' => 'The name must be less than 100 characters',
+            'about.string' => 'The about must be string',
+            'about.max' => 'The about must be less than 100 characters',
+        ];
+    }
 }
