@@ -49,11 +49,30 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        return Validator::make($data, [
+        $validator = Validator::make($data, [
             'nickname' => ['required', 'string', 'max:50', 'min:4', 'unique:users'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
+
+        $validator->setCustomMessages([
+            'nickname.required' => 'The nickname is required',
+            'nickname.string' => 'The nickname must be string',
+            'nickname.unique' => 'The nickname already exists',
+            'nickname.max' => 'The nickname must be less than 50 characters',
+            'nickname.min' => 'The nickname must be more than 4 characters',
+            'email.required' => 'The email is required',
+            'email.string' => 'The email must be string',
+            'email.unique' => 'The email already exists',
+            'email.max' => 'The email must be less than 255 characters',
+            'email.email' => 'The email must be email type',
+            'password.required' => 'The password is required',
+            'password.string' => 'The password must be string',
+            'password.confirmed' => 'The password not confirmed',
+            'password.min' => 'The password must be more than 8 characters',
+        ]);
+
+        return $validator;
     }
 
     /**
