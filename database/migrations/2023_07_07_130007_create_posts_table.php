@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->text('component');
+            $table->text('content');
             $table->unsignedBigInteger('author_id');
             $table->timestamps();
 
