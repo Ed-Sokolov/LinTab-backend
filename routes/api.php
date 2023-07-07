@@ -33,3 +33,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
         Route::post('/', 'StoreController');
     });
 });
+
+Route::group(['namespace' => 'Post', 'prefix' => 'posts'], function () {
+    Route::get('/{post}', 'ShowController');
+});
