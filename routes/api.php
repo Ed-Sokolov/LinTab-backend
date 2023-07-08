@@ -36,6 +36,10 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
 });
 
 Route::group(['namespace' => 'Post', 'prefix' => 'posts'], function () {
+    Route::group(['namespace' => 'Popular', 'prefix' => 'popular'], function () {
+        Route::get('/', 'IndexController');
+    });
+
     Route::get('/', 'IndexController');
     Route::get('/{post}', 'ShowController');
 });
