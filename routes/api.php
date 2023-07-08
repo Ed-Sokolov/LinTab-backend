@@ -32,6 +32,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::group(['namespace' => 'Post', 'prefix' => 'posts'], function () {
         Route::post('/', 'StoreController');
         Route::patch('/{post}', 'UpdateController');
+        Route::delete('/{post}', 'DestroyController');
     });
 });
 
