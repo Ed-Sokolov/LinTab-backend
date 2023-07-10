@@ -16,7 +16,7 @@ class PreviewImageResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'prev_url' => $this->prev_url,
+            'prev_url' => $this->preview_url,
         ];
     }
 }
