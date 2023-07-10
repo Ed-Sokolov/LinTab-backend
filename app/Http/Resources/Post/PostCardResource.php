@@ -2,11 +2,11 @@
 
 namespace App\Http\Resources\Post;
 
-use App\Http\Resources\Image\ImageResource;
+use App\Http\Resources\Image\PreviewImageResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class PostResource extends JsonResource
+class PostCardResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -18,9 +18,8 @@ class PostResource extends JsonResource
         return [
             'id' => $this->id,
             'title' => $this->title,
-            'content' => $this->content,
             'author_id' => $this->author_id,
-            'image' => new ImageResource($this->image),
+            'preview' => new PreviewImageResource($this->image),
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];

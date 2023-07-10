@@ -13,4 +13,9 @@ class Post extends Model
     protected $guarded = false;
 
     protected $table = 'posts';
+
+    public function image()
+    {
+        return $this->hasOne(Image::class, "post_id", "id");
+    }
 }
