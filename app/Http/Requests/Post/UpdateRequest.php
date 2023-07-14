@@ -22,8 +22,8 @@ class UpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'string|min:4|max:255',
-            'content' => 'string|min:100|max:60000',
+            'title' => 'required|string|min:4|max:255',
+            'content' => 'required|string|min:100|max:60000',
             'image'=>'nullable|file|mimes:jpeg,jpg,png|max:5000'
         ];
     }
@@ -31,11 +31,11 @@ class UpdateRequest extends FormRequest
     public function messages()
     {
         return [
-//            'title.required' => 'The title is required',
+            'title.required' => 'The title is required',
             'title.string' => 'The title must be string',
             'title.min' => 'The title must be more than 4 characters',
             'title.max' => 'The title must be less than 255 characters',
-//            'content.required' => 'The content is required',
+            'content.required' => 'The content is required',
             'content.string' => 'The content must be string',
             'content.min' => 'The content must be more than 100 characters',
             'content.max' => 'The content must be less than 60000 characters',
