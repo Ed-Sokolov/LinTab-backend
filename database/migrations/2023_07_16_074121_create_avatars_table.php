@@ -13,15 +13,11 @@ return new class extends Migration
     {
         Schema::create('avatars', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
             $table->string('alt_name');
             $table->string('path');
             $table->string('url');
             $table->string('preview_url');
             $table->timestamps();
-
-            $table->index('user_id', 'user_avatar_idx');
-            $table->foreign('user_id', 'user_avatar_fk')->on('users')->references('id');
         });
     }
 
