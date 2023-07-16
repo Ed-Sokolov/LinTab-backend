@@ -27,6 +27,10 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
         Route::group(['namespace' => 'About', 'prefix' => 'about'], function () {
             Route::patch('/', 'UpdateController');
         });
+
+        Route::group(['namespace' => 'Avatar', 'prefix' => 'avatar'], function () {
+            Route::patch('/', 'UpdateController');
+        });
     });
 
     Route::group(['namespace' => 'Post', 'prefix' => 'posts'], function () {
