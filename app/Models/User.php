@@ -23,7 +23,7 @@ class User extends Authenticatable
         'name',
         'email',
         'about',
-        'avatar',
+        'avatar_id',
         'password',
     ];
 
@@ -46,4 +46,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function avatar()
+    {
+        return $this->belongsTo(Avatar::class, 'avatar_id', 'id');
+    }
 }

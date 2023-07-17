@@ -22,17 +22,17 @@ class UpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'image' => 'required|file|mimes:jpeg,jpg,png|max:5000'
+            'avatar' => 'required|file|mimes:jpeg,jpg,png|max:5000'
         ];
     }
 
     public function messages()
     {
         return [
-            'image.required' => 'The image is required',
-            'image.file' => 'The image must be file',
-            'image.mimes' => 'The extension must be jpeg, jpg or png',
-            'image.max' => 'The size must be less than 5MB'
+            'avatar.required' => 'The avatar is required',
+            'avatar.file' => 'The avatar must be file',
+            'avatar.mimes' => 'The extension must be jpeg, jpg or png',
+            'avatar.max' => 'The size must be less than 5MB'
         ];
     }
 }
