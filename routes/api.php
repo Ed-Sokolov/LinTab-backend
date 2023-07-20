@@ -30,6 +30,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
 
         Route::group(['namespace' => 'Avatar', 'prefix' => 'avatar'], function () {
             Route::patch('/', 'UpdateController');
+            Route::delete('/', 'DestroyController');
         });
     });
 

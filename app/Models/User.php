@@ -49,6 +49,6 @@ class User extends Authenticatable
 
     public function avatar()
     {
-        return $this->belongsTo(Avatar::class, 'avatar_id', 'id');
+        return $this->hasOne(Avatar::class, 'user_id', 'id');
     }
 }
