@@ -25,6 +25,7 @@ class UpdateController extends Controller
         if (isset($currentAvatar)) {
             Storage::disk('public')->delete($currentAvatar->path);
             Storage::disk('public')->delete(str_replace('images/avatars/', 'images/avatars/prev_', $currentAvatar->path));
+            $currentAvatar->delete();
         }
 
         $name = md5(Carbon::now() . '_' . $newAvatar->getClientOriginalName()) . '.' . $newAvatar->getClientOriginalExtension();
@@ -33,7 +34,8 @@ class UpdateController extends Controller
 
         $previewName = "prev_$name";
 
-        $currentAvatar->update([
+        Avatar::create([
+            'user_id' => $user->id,
             'alt_name' => "$user->nickname's avatar",
             'path' => $filePath,
             'url' => url("/storage/$filePath"),
@@ -43,6 +45,8 @@ class UpdateController extends Controller
         \Intervention\Image\Facades\Image::make($newAvatar)
             ->fit(100, 100)
             ->save(storage_path("app/public/images/avatars/$previewName"));
+
+        $user->refresh();
 
         return new UserResource($user);
     }

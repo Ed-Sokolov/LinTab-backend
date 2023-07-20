@@ -21,7 +21,7 @@ class UserResource extends JsonResource
             'name' => $this->name,
             'about' => $this->about,
             'email' => $this->email,
-            'avatar' => $this->avatar_id ? new AvatarResource($this->avatar) : null
+            'avatar' => isset($this->avatar) ? new AvatarResource($this->avatar) : null
         ];
     }
 }
