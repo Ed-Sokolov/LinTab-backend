@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User\Avatar;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\Avatar\UpdateRequest;
+use App\Http\Resources\User\UserResource;
 use App\Models\Avatar;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -19,12 +20,11 @@ class UpdateController extends Controller
 
         $user = Auth::user();
 
-        $currentAvatar = $user->avatar_id;
+        $currentAvatar = $user->avatar;
 
-        if ($currentAvatar !== null) {
+        if (isset($currentAvatar)) {
             Storage::disk('public')->delete($currentAvatar->path);
             Storage::disk('public')->delete(str_replace('images/avatars/', 'images/avatars/prev_', $currentAvatar->path));
-            $currentAvatar->delete();
         }
 
         $name = md5(Carbon::now() . '_' . $newAvatar->getClientOriginalName()) . '.' . $newAvatar->getClientOriginalExtension();
@@ -33,7 +33,7 @@ class UpdateController extends Controller
 
         $previewName = "prev_$name";
 
-        $avatar = Avatar::create([
+        $currentAvatar->update([
             'alt_name' => "$user->nickname's avatar",
             'path' => $filePath,
             'url' => url("/storage/$filePath"),
@@ -44,8 +44,6 @@ class UpdateController extends Controller
             ->fit(100, 100)
             ->save(storage_path("app/public/images/avatars/$previewName"));
 
-        $user->update(['avatar_id' => $avatar->id]);
-
-        return response($user);
+        return new UserResource($user);
     }
 }
