@@ -52,7 +52,7 @@ class RegisterController extends Controller
         $validator = Validator::make($data, [
             'nickname' => ['required', 'string', 'max:50', 'min:4', 'unique:users'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'password' => ['required', 'string', 'min:8', 'max:24', 'confirmed'],
         ]);
 
         $validator->setCustomMessages([
@@ -70,6 +70,7 @@ class RegisterController extends Controller
             'password.string' => 'The password must be string',
             'password.confirmed' => 'The password not confirmed',
             'password.min' => 'The password must be more than 8 characters',
+            'password.max' => 'The password must be less than 24 characters',
         ]);
 
         return $validator;
