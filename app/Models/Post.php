@@ -14,6 +14,8 @@ class Post extends Model
 
     protected $table = 'posts';
 
+    protected $with = ['views'];
+
     public function image()
     {
         return $this->hasOne(Image::class, "post_id", "id");
