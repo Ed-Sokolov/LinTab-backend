@@ -21,6 +21,7 @@ class PostResource extends JsonResource
             'content' => $this->content,
             'author_id' => $this->author_id,
             'image' => new ImageResource($this->image),
+            'views' => $this->views ? $this->views->count : 0,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];

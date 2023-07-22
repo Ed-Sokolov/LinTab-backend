@@ -20,6 +20,7 @@ class PostCardResource extends JsonResource
             'title' => $this->title,
             'author_id' => $this->author_id,
             'preview' => new PreviewImageResource($this->image),
+            'views' => $this->views ? $this->views->count : 0,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];

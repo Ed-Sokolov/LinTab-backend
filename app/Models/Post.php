@@ -18,4 +18,9 @@ class Post extends Model
     {
         return $this->hasOne(Image::class, "post_id", "id");
     }
+
+    public function views()
+    {
+        return $this->hasOne(PostViews::class, "post_id", "id");
+    }
 }
