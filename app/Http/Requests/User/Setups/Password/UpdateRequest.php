@@ -24,6 +24,7 @@ class UpdateRequest extends FormRequest
         return [
             'old_password' => 'required|string|min:8|max:24',
             'new_password' => 'required|string|min:8|max:24|confirmed',
+            'new_password_confirmation' => 'required|string'
         ];
     }
 }

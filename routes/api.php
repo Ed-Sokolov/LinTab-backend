@@ -34,7 +34,9 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
         });
 
         Route::group(['namespace' => 'Setups', 'prefix' => 'setups'], function () {
-
+            Route::group(['namespace' => 'Password', 'prefix' => 'password'], function () {
+                Route::patch('/', 'UpdateController');
+            });
         });
     });
 
