@@ -38,6 +38,8 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
                 Route::patch('/', 'UpdateController');
             });
         });
+
+        Route::delete('/user', 'DestroyController');
     });
 
     Route::group(['namespace' => 'Post', 'prefix' => 'posts'], function () {
