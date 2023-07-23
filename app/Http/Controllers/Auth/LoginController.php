@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Validation\ValidationException;
 
 class LoginController extends Controller
@@ -42,6 +44,16 @@ class LoginController extends Controller
 
     protected function sendFailedLoginResponse(Request $request)
     {
+        $email = json_decode($request->getContent())->email;
+
+        $isTrashedUser = isset(User::onlyTrashed()->where('email', $email)->first()->id);
+
+        if ($isTrashedUser) {
+            throw ValidationException::withMessages([
+                $this->username() => ['Your account is being deleted'],
+            ])->status(Response::HTTP_FORBIDDEN);
+        }
+
         throw ValidationException::withMessages([
             $this->username() => ['The email or the password is incorrect'],
         ]);
