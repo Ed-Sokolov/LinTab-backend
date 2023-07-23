@@ -20,7 +20,7 @@ Route::middleware('auth:sanctum')->get('/auth/check', function (Request $request
 
 Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::group(['namespace' => 'User', 'prefix' => 'users'], function () {
-        Route::get('/{user}', 'ShowController');
+        Route::get('/{user}', 'ShowController')->withTrashed();
     });
 
     Route::group(['namespace' => 'User', 'prefix' => 'settings'], function () {
