@@ -7,6 +7,7 @@ use App\Http\Requests\Post\StoreRequest;
 use App\Http\Resources\Post\PostResource;
 use App\Models\Image;
 use App\Models\Post;
+use App\Models\PostViews;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 
@@ -35,6 +36,8 @@ class StoreController extends Controller
             'url' => url("/storage/$filePath"),
             'preview_url' => url("/storage/images/posts/$previewName")
         ]);
+
+        PostViews::create(['post_id' => $post->id]);
 
         \Intervention\Image\Facades\Image::make($image)
             ->fit(516, 290)

@@ -10,7 +10,7 @@ class IndexController extends Controller
 {
     public function __invoke()
     {
-        $posts = Post::all();
+        $posts = Post::with('views')->get();
 
         return PostCardResource::collection($posts);
     }
