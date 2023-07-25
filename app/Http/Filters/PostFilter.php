@@ -28,7 +28,7 @@ class PostFilter extends AbstractFilter
     {
         $dir = str_contains($value, 'desc') ? 'desc' : 'asc';
         $value = str_replace(',desc', '', $value);
-        $column = str_replace('date', 'created_at', $value);
+        $column = str_replace('date', 'updated_at', $value);
 
         switch ($column) {
             case 'views':
@@ -36,7 +36,7 @@ class PostFilter extends AbstractFilter
                     ->select('posts.*', 'post_views.count as view_count')
                     ->orderBy('view_count', $dir);
                 break;
-            case 'created_at':
+            case 'updated_at':
             case 'title':
                 $builder->orderBy($column, $dir);
                 break;
