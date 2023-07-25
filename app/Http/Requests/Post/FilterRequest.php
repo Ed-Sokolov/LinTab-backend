@@ -23,6 +23,7 @@ class FilterRequest extends FormRequest
     {
         return [
             'title' => 'nullable',
+            'sort' => 'nullable',
         ];
     }
 }
